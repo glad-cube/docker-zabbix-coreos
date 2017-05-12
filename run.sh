@@ -28,4 +28,13 @@ if [ -f "/etc/zabbix/$HOST.conf" ]; then
     cat "/etc/zabbix/$HOST.conf" >> /etc/zabbix/zabbix_agentd.conf
 fi
 
+if [ "$MONITOR_DC" = "true" ]; then
+  cp /root/zabbix_module_docker.so /usr/lib/modules-load.d/
+  cat <<EOF > /etc/zabbix/zabbix_agentd.conf.d/docker-module.conf
+LoadModulePath=/usr/lib/modules-load.d/
+LoadModule=zabbix_module_docker.so
+AllowRoot=1
+EOF
+fi
+
 exec /usr/bin/supervisord

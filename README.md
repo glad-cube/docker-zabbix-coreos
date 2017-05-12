@@ -1,4 +1,4 @@
-# Docker Zabbix for CoreOS server
+# Docker Zabbix 3.0 for CoreOS server
 
 This Docker container provides a patched Zabbix agent to monitor a real CoreOS server and all his containers.
 
@@ -56,6 +56,10 @@ The needed options are:
 * *SERVER* (required): the IP address of the Zabbix server
 * *HOSTMETADATA* (required): the metadata value shared by all servers on the same cluster. This value will match the autoregistration action
 * *HOSTNAME* (optional): the hostname used by this agent in the zabbix frontend. If no value is given, the machine id of the host will be used
+
+The needed environments are:
+
+* *MONITOR_DC* (optional, default: `false`): Set to `true` if you want to monitor the Docker container.
 
 The agent will start and the auto-registration will add your agent if a auto-registration action is matched for your host metadata. If you don't want to auto-register your nodes, you need to specify the hostname value to use.
 

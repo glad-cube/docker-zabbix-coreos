@@ -33,8 +33,9 @@ RUN apt-get update && \
         pciutils \
         sudo
 
-COPY files/zabbix-agent_2.2.7+dfsg-1.1_amd64.deb /root/
-RUN dpkg -i /root/zabbix-agent_2.2.7+dfsg-1.1_amd64.deb
+COPY files/zabbix-agent_3.0.9-1+jessie_amd64.deb /root/
+COPY files/zabbix_module_docker.so /root/
+RUN dpkg -i /root/zabbix-agent_3.0.9-1+jessie_amd64.deb
 COPY etc/zabbix/ /etc/zabbix/
 
 RUN mkdir -p /var/lib/zabbix && \
